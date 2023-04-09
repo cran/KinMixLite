@@ -1,7 +1,7 @@
 \name{rni}
 \alias{rni}
-\title{Random number initialiser supporting spontaneous reproduction}
-\description{Random number initialiser supporting spontaneous reproduction}
+\title{Random number initialiser supporting spontaneous replication}
+\description{Random number initialiser supporting spontaneous replication}
 \usage{
 rni(seed=0)
 }

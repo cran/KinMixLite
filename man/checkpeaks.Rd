@@ -6,8 +6,8 @@
 checkpeaks(x,db,fix=0.003)
 }
 \arguments{
-  \item{x}{data frame, the epg or genotype profile; see Format section in \code{\link{KinMixLite}}.}
-  \item{db}{data frame, the db; see Format section in \code{\link{KinMixLite}}.}
+  \item{x}{data frame, the epg or genotype profile; see \code{\link{formats}}.}
+  \item{db}{data frame, the db; see \code{\link{formats}}.}
   \item{fix}{numeric: if positive, increment to db frequency for each identified discrepant peak}
 }
 \value{(possibly modified) db}

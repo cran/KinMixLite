@@ -1,6 +1,6 @@
 \name{require.compiled}
 \alias{require.compiled}
-\title{Force compilation of all BNs in a DNA mixture}
+\title{Force compilation of all BNs in a DNA mixture model}
 \description{Scan all Bayes nets in mixture, and compile any that are not already compiled}
 \usage{
 require.compiled(mixture)

@@ -1,7 +1,7 @@
 \name{protected}
 \alias{protected}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Catch numerical errors and return -Inf}
+\title{Catch numerical errors, and return -Inf}
 \description{Attempts to catch numerical erros in evaluating the expression \code{x}, delivering a default result instead of NaN or other failures}
 \usage{
 protected(x,default=-Inf) 

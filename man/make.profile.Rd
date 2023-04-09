@@ -1,6 +1,6 @@
 \name{make.profile}
 \alias{make.profile}
-\title{Make profile}
+\title{Convert genotype profile to reference profile format}
 \description{Convert genotype profile to reference profile format}
 \usage{
 make.profile(gt,name='K')

@@ -1,17 +1,15 @@
 \name{rpt.UAF}
 \alias{rpt.UAF}
 \alias{replace.tables.for.UAF}
-\title{replace.tables.for.UAF
-}
+\title{Replace CPTs in a DNA mixture to model uncertain allele frequencies}
 \description{
-Replace CPTs to model uncertain allele frequencies
+Replace CPTs in a DNA mixture to model uncertainty in allele frequencies
 }
 \usage{
 replace.tables.for.UAF(mixture, M, compile = TRUE)
 
 rpt.UAF(mixture, M, compile = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{mixture}{DNAmixtures object created by previous call to \code{DNAmixture} with \cr
 \code{triangulate=FALSE,compile=FALSE}}

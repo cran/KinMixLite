@@ -33,8 +33,12 @@ rpt.typed.relative(mixture, Rgt, IBD=c(0.25,0.5,0.25), ind=1, compile=TRUE)
 	\code{triangulate=FALSE,compile=FALSE}}
   \item{IBD}{relationships between the specified individuals, as multi-person condensed 
 coefficients of identity, in one of several representation; see Details.}
-  \item{typed.gts}{list of 0 or more genotypes of relatives; the components of this list must be named (with the id's of the relevant individuals) if \code{targets} and \code{contribs} are used to code the correspondences (see Details).}
-  \item{inds}{vector of 1 or more integers: which `unknown' contributors are we modelling by amending their CPTs? The elements should be listed in the same order as the corresponding pairs of columns of the IBD patterns in \code{IBD}}
+  \item{typed.gts}{list of 0 or more genotypes of relatives; the components of this list must
+be named (with the id's of the relevant individuals) if \code{targets} and \code{contribs}
+are used to code the correspondences (see Details).}
+  \item{inds}{vector of 1 or more integers: which `unknown' contributors are we modelling by
+amending their CPTs? The elements should be listed in the same order as the corresponding
+pairs of columns of the IBD patterns in \code{IBD}}
   \item{jtyped}{indices of pairs of columns of \code{IBD$patt} that correspond to the 
 typed relatives (if any); default the last \code{length(typed.gts)} pairs of columns}
   \item{jcontr}{indices of pairs of columns of \code{IBD$patt} that correspond to the 
@@ -48,6 +52,7 @@ in order}
   \item{ind}{as \code{inds}, used above when only one allowed}
   \item{aca, Mgt, Fgt, Rgt}{individual genotypes, as allele count arrays}
 }
+
 \details{
 In using \code{rpt.IBD} or \code{rpt.typed.relatives} (which is identical), the correspondence between mixture contributors, specified relationships, and typed genotype profiles should be specified 
 \strong{either} (preferably)
@@ -61,17 +66,38 @@ Special cases are treated slightly more efficiently:
 \code{rpt.typed.parents}: single contributor, both parents typed;
 \code{rpt.typed.relative}: single contributor, single typed relative.
 
-Note that \code{IBD$patt} always has an even number of columns, two for each individual in the joint relationship specified; \code{jtyped} and \code{jcontr} are vectors of indices of these individuals, i.e. to pairs of adjacent columns of \code{IBD$patt}.
+Note that \code{IBD$patt} always has an even number of columns, two for each individual
+in the joint relationship specified; \code{jtyped} and \code{jcontr} are vectors of
+indices of these individuals, i.e. to pairs of adjacent columns of \code{IBD$patt}.
 
-Multiple functions in this group can validly be called sequentially (with all but the last having \code{compile=FALSE}) providing they reference different sets of contributors among the targets, \strong{and} that these sets are conditionally independent given the typed genotypes specified.
+Multiple functions in this group can validly be called sequentially (with all but the
+last having \code{compile=FALSE}) providing they reference different sets of
+contributors among the targets, \strong{and} that these sets are conditionally
+independent given the typed genotypes specified.
 
-There are multiple valid representations for relationships in the argument \code{IBD} -- as an IBD pattern distribution, via a pedigree, or. in the case of just two individuals. via either a vector of 3 kappas or 9 Deltas (Jacquard's condensed coefficients of identity). For full details, see \code{\link{convertIBD}}.
+There are multiple valid representations for relationships in the argument \code{IBD} --
+as an IBD pattern distribution, via a pedigree, or. in the case of just two individuals.
+via either a vector of 3 kappas or 9 Deltas (Jacquard's condensed coefficients of
+identity). For full details, see \code{\link{convertIBD}}.
 If \code{IBD} is missing, the default value represents parent-child.
 
-In the interests of upward compatibility, in \code{rpt.typed.child} and \code{replace.Ui.tables} (which are identical), the argument \code{Cgt} can be given as either a genotype profile data frame, or an allele count array.
 
-By default, the allele frequency database used for the founding genes is that used when the \code{mixture} object is created, in an earlier call to \code{DNAmixture}. A non-null value for the \code{all.freq} argument allows the user to specify alternative database(s) for the founding genes. If its value is an allele frequency database (in the format specified in \code{\link{KinMixLite}}) then that database is used for all founding genes; if the value of the argument is a list of such databases, then component k of the list is used for allele frequencies for the founding gene labelled k in the \code{IBD} argument. Note that this option allows modelling of mixtures where different contributors are drawn from different populations, whether or not there are relationships among individuals. 
-}
+In the interests of upward compatibility, in \code{rpt.typed.child} and 
+\code{replace.Ui.tables} (which are identical), the argument \code{Cgt} can be given as
+either a genotype profile data frame, or an allele count array.
+
+By default, the allele frequency database used for the founding genes is that
+used when the \code{mixture} object is created, in an earlier call to \code{DNAmixture}.
+A non-null value for the \code{all.freq} argument allows the
+user to specify alternative database (s) for the founding genes. If its value
+is an allele frequency database (in the format specified in 
+\code{\link{formats}}) then that database is used for all founding genes; if the
+value of the argument is a list of such databases, then component k of the
+list is used for allele frequencies for the founding gene labelled k in the
+\code{IBD} argument. Note that this option allows modelling of mixtures where
+different contributors are drawn from different populations, whether or not
+there are relationships among individuals. }
+
 
 \value{Vector of marker-specific probabilities of the typed genotypes.}
 \author{

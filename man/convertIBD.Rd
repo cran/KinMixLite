@@ -1,7 +1,7 @@
 \name{convertIBD}
 \alias{as.IBD}
 \alias{convertIBD}
-\title{Construct IBD pattern distribution}
+\title{Convert relationship information to IBD pattern distribution}
 \description{Construct IBD pattern distribution from one of several alternative representations
 of multi-person condensed coefficients of identity}
 \usage{
@@ -39,7 +39,7 @@ Peter Green (P.J.Green@bristol.ac.uk)
 
 
 \seealso{
-\code{\link{pedtools}}, \code{\link{KinMixLite}}
+\code{\link{pedtools}}, \code{\link{formats}}
 
 
 }

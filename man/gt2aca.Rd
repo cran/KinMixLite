@@ -1,7 +1,7 @@
 \name{gt2aca}
 \alias{gt2aca}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Converts genotype profile format}
+\title{Converts genotype profiles to allele count arrays}
 \description{Returns list of vectors of allele counts corresponding to genotype profile in gt}
 \usage{
 gt2aca(mixture,gt,eps=0)

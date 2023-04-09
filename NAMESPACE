@@ -24,7 +24,15 @@ export("as.gt",
        "rpt.typed.relatives",
        "rpt.UAF",
        "size",
-       "wlr")
+       "wlr",
+       "add.child.meiosis.nodes",
+       "add.motherchild.likd.node",
+       "add.relative.likd.node",
+       "expr.make.findings",
+       "logLX",
+       "logL.UKX",
+       "mixMLX"
+)
 
 S3method(plot,IBD)
 S3method(print,IBD)
@@ -34,7 +42,9 @@ import(DNAmixturesLite)
 import(gRaven)
 importFrom(graphics,lines,points,text,par)
 importFrom(gRbase,propagate,compile,triangulate)
+importFrom(Matrix,bdiag)
 importFrom(methods,is)
+importFrom(numDeriv,hessian)
 importFrom(pedtools,is.ped,is.pedList,ped,ancestors)
 importFrom(ribd,minimalPattern)
 importFrom(Rsolnp,solnp)

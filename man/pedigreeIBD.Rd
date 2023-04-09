@@ -1,6 +1,6 @@
 \name{pedigreeIBD}
 \alias{pedigreeIBD}
-\title{Construct IBD pattern distribution}
+\title{Construct IBD pattern distribution from pedigree}
 \description{Construct IBD pattern distribution from a pedigree and a target list of individuals}
 \usage{
 pedigreeIBD(x, targets, cond = TRUE, ped=FALSE, quiet = TRUE, verbose = FALSE)}
@@ -25,7 +25,7 @@ Peter Green (P.J.Green@bristol.ac.uk)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{pedtools}}, \code{\link{KinMixLite}}
+\code{\link{pedtools}}, \code{\link{formats}}
 }
 
 \references{

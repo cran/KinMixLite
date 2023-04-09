@@ -1,6 +1,6 @@
 \name{loop.rpt.IBD}
 \alias{loop.rpt.IBD}
-\title{Analysis of DNA mixtures with familial relatioships}
+\title{Analysis of DNA mixtures with familial relationships by looping}
 \description{
 Analysis of DNA mixtures with familial relationships, by looping over traces, markers, and IBD patterns, to reduce total BN table size, at some price in execution time}
 \usage{

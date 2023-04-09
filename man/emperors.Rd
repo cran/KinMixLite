@@ -7,7 +7,7 @@
 \format{
 IBD object
 }
-\seealso{\code{link{KinMixLite-package}}}
+\seealso{\code{\link{formats}}.}
 \examples{
 data(emperors)
 }
