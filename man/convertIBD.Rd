@@ -39,7 +39,7 @@ Peter Green (P.J.Green@bristol.ac.uk)
 
 
 \seealso{
-\code{\link{pedtools}}, \code{\link{formats}}
+\code{\link[pedtools]{pedtools}}, \code{\link{formats}}
 
 
 }

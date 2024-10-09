@@ -31,7 +31,7 @@ Peter Green (P.J.Green@bristol.ac.uk)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See also \code{\link{mixML}}.
+See also \code{\link[DNAmixturesLite]{mixML}}.
 }
 \examples{
 data(test2data)

@@ -5,7 +5,7 @@
 \usage{
 pedigreeIBD(x, targets, cond = TRUE, ped=FALSE, quiet = TRUE, verbose = FALSE)}
 \arguments{
-  \item{x}{A pedigree in \code{\link{pedtools}} format}
+  \item{x}{A pedigree in \code{\link[pedtools]{pedtools}} format}
   \item{targets}{Character vector, some or all of the individual identifiers in the pedigree \code{x}}
   \item{cond}{should IBD pattern be condensed?}
   \item{ped}{logical, should complete pedigree be added as an attribute to the output, if available?}
@@ -25,7 +25,7 @@ Peter Green (P.J.Green@bristol.ac.uk)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{pedtools}}, \code{\link{formats}}
+\code{\link[pedtools]{pedtools}}, \code{\link{formats}}
 }
 
 \references{

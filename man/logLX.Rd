@@ -16,7 +16,7 @@ Peter Green (P.J.Green@bristol.ac.uk)
 }
 
 \seealso{
-See also \code{\link{logL}}.
+See also \code{\link[DNAmixturesLite]{logL}}.
 }
 \examples{
 data(test2data)
