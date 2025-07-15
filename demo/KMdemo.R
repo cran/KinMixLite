@@ -25,12 +25,28 @@ rpt.IBD(mixD,,list(Cgt))
 log10LR<-(logL(mixD)(pars)-baseline)/log(10)
 cat('log10 LR',log10LR,'\n')
 
+## the same, using wrapper function KinMix
+
+mixD<-KinMix(list(epg),k=2,C=list(0.001),database=db,
+	contribs=c('F'),typed.gts=list(C=Cgt),IBD='parent-child',targets=c('F','C'),
+	pars=pars)
+log10LR<-(mixD$logL-baseline)/log(10)
+cat('log10 LR',log10LR,'\n')
+
 ## Fit 2-person mixture model in which contributor 1 is father of a typed individual Cgt 
 ## with mother Mgt
 
 mixD<-DNAmixture(list(epg),k=2,C=list(0.001),database=db,triangulate=FALSE)
-rpt.IBD(mixD,,list(Mgt,Cgt)) 
+rpt.IBD(mixD,IBD='trio',list(Mgt,Cgt)) 
 log10LR<-(logL(mixD)(pars)-baseline)/log(10)
+cat('log10 LR',log10LR,'\n')
+
+## the same, using wrapper function KinMix
+
+mixD<-KinMix(list(epg),k=2,C=list(0.001),database=db,
+	contribs=c('F'),typed.gts=list(M=Mgt,C=Cgt),IBD='trio',targets=c('F','M','C'),
+	pars=pars)
+log10LR<-(mixD$logL-baseline)/log(10)
 cat('log10 LR',log10LR,'\n')
 
 ## Fit 2-person mixture model in which contributors are two parents of a child with 

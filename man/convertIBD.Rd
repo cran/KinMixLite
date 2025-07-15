@@ -27,7 +27,7 @@ c('sibs','parent-child','half-sibs',
 \item a vector of 9 Deltas
 \item a list with matrix or vector valued component \code{patt}, with or without component \code{pr}
 \item a list with 2 components, the first being a pedigree in the sense of the \code{pedtools} package, the second a vector of target id's
-\item a 3-column character matrix of individual tags, each row denoting a child/mother/triple - an alternative compact representation of a pedigree 
+\item a 3-column character matrix of individual tags, each row denoting a child/mother/father triple - an alternative compact representation of a pedigree 
 }
 }
 

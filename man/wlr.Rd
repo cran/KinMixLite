@@ -36,7 +36,7 @@ pars<-mixpar(rho=list(2),eta=list(100),xi=list(0.1),phi=list(c(U1=0.9,U2=0.1)))
 
 mixWLR<-DNAmixture(list(epg),k=2,C=list(C),database=db,dyes=list(NGMDyes))
 setPeakInfo(mixWLR,pars)
-sepWLR<-map.genotypes(mixWLR,type="all",pmin=0.001,U=1)
+sepWLR<-map.genotypes(mixWLR,type="all",pmin=0.0001,U=1)
 LR<-wlr(sepWLR,Cgt,db)
 cat('\nWLR LR:',LR,'; log10(LR):',log10(LR),'\n')
 }
