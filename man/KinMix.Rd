@@ -67,9 +67,9 @@ An object of class \code{DNAmixture}. This contains amongst other things
 \item{markers}{The joint set of markers used for the mixtures specified.}
 \item{domains}{For models involving unknown contributors,
 a list containing one Bayesian network (\code{hugin.domain}) per marker;
-see \code{\link[DNAmixturesLite:DNAmixturesLite-package]{buildMixtureDomains}} for details on the networks}
+see \code{\link[DNAmixturesLite]{buildMixtureDomains}} for details on the networks}
 \item{data}{A list containing for each marker the combined allele frequencies,
-peak heights, and reference profiles as produced by \code{\link[DNAmixturesLite:DNAmixturesLite-package]{DNAmixtureData}}.}
+peak heights, and reference profiles as produced by \code{\link[DNAmixturesLite]{DNAmixtureData}}.}
 It may also contain
 \item{mle}{Maximum likelihood estimates of the peak height model parameters}
 \item{logL}{log-likelihood of model evaluated at \code{pars}}
@@ -79,6 +79,9 @@ Create a DNA mixture model, with possibly related contributors.
 }
 \details{
 Generalises \code{DNAmixture} to allow relatedness as in \code{rpt.IBD}
+}
+\seealso{
+\code{[DNAmixturesLite]{DNAmixture}}
 }
 \examples{
 data(test2data)

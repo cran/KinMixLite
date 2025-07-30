@@ -6,18 +6,16 @@ KinMix<-function(data,k,C,database,K=character(0),reference.profiles = NULL,
 {
 checkdata(data,database,typed.gts=NULL,reference.profiles=NULL)
 
-typed<-names(typed.gts)
-xprofiles<-setdiff(intersect(contribs,typed),targets)
-xcontribs<-intersect(contribs,targets)
-xtyped<-intersect(targets,typed)
-xignore<-setdiff(typed,union(contribs,targets))
+typed<-unique(names(typed.gts))
+if(length(typed)!=length(typed.gts)) stop('names of typed.gts must be distinct')
+targets<-unique(targets)
+IBD<-as.IBD(IBD)
+if(length(targets)*2!=ncol(IBD$patt)) stop('targets and IBD inconsistent')
 
-#cat('[[ diagnostic:\nprofiles:',xprofiles,'\n')
-#cat('contribs:',xcontribs,'\n')
-#cat('typed:   ',xtyped,'\n')
-#cat('targets: ',targets,'\n')
-#cat('ignore:  ',xignore,'\n]]\n')
+z<-KMmodel(k,typed,targets,contribs,rp=TRUE,verbose=TRUE)
 
+
+xprofiles<-z$move
 # merge both sorts of known contributors
 if(!is.null(reference.profiles)){
 	if(length(xprofiles)>0) {
@@ -31,6 +29,18 @@ if(!is.null(reference.profiles)){
 	}
 }
 xprofiles<-c(K,xprofiles)
+xcontribs<-z$contribs
+xtyped<-z$typed
+if(is.null(z$typed)) typed.gts<-NULL else typed.gts<-typed.gts[z$typed]
+
+xignore<-setdiff(typed,union(contribs,targets))
+
+#cat('[[ diagnostic:\nprofiles:',xprofiles,'\n')
+#cat('contribs:',xcontribs,'\n')
+#cat('typed:   ',xtyped,'\n')
+#cat('targets: ',targets,'\n')
+#cat('ignore:  ',xignore,'\n]]\n')
+
 
 if(0==length(xcontribs)){
 if(0==length(xprofiles)) {

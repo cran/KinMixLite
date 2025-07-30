@@ -13,12 +13,12 @@ Used after a call to \code{DNAmixture} with \code{compile=FALSE,triangulate=FALS
 rpt.IBD(mixture, IBD="parent-child", typed.gts = NULL, inds = 1, 
 jtyped = ncol(IBD$patt)/2 - length(typed.gts) + seq_along(typed.gts), 
 jcontr = seq_along(inds), 
-targets=attr(IBD,'targets'), contribs=NULL, quiet=FALSE, all.freq = NULL, compile = TRUE) 
+targets=NULL, contribs=NULL, quiet=FALSE, all.freq = NULL, compile = TRUE) 
 
 rpt.typed.relatives(mixture, IBD="parent-child", typed.gts = NULL, inds = 1, 
 jtyped = ncol(IBD$patt)/2 - length(typed.gts) + seq_along(typed.gts), 
 jcontr = seq_along(inds), 
-targets=attr(IBD,'targets'), contribs=NULL, quiet=FALSE, all.freq = NULL, compile = TRUE)
+targets=NULL, contribs=NULL, quiet=FALSE, all.freq = NULL, compile = TRUE)
 
 rpt.typed.child(mixture, aca, ind=1)
 
@@ -29,7 +29,7 @@ rpt.typed.parents(mixture, Mgt, Fgt, ind=1, compile=TRUE)
 rpt.typed.relative(mixture, Rgt, IBD=c(0.25,0.5,0.25), ind=1, compile=TRUE)
 }
 \arguments{
-  \item{mixture}{DNAmixtures object created by previous call to \code{DNAmixture} with \cr
+  \item{mixture}{DNAmixturesLite object created by previous call to \code{DNAmixture} with \cr
 	\code{triangulate=FALSE,compile=FALSE}}
   \item{IBD}{relationships between the specified individuals, as multi-person condensed 
 coefficients of identity, in one of several representation; see Details.}
@@ -60,6 +60,8 @@ using \code{targets}, \code{contribs} and through the names of the components in
 \strong{or} (to be deprecated)
 with \code{inds}, \code{jcontr} and \code{jtyped}: 
 the two representations should not be mixed up. If either \code{targets} or \code{contribs} specified, the former representation is assumed.
+
+Note that \code{contribs} should be a subset of \code{targets}; if this is not the case, a warning is printed, and \code{IBD} and \code{targets} are extended to include the extra individuals. This gives correct results, but is less efficient than including the extra individuals in \code{reference.profiles} in the \code{DNAmixture} call. If the extra individuals are not typed, they can simply be omitted from \code{contribs}.
 
 Special cases are treated slightly more efficiently:
 \code{rpt.typed.child}: single contributor, single typed relative, parent or child;

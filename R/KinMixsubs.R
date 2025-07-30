@@ -208,17 +208,45 @@ function (res)
 loop.rpt.IBD <-
 function (listdata, pars, IBD, typed.gts = NULL, inds = 1, jtyped = ncol(IBD$patt)/2 - 
     length(typed.gts) + seq_along(typed.gts), jcontr = seq_along(inds), 
-    targets = NULL, contribs, quiet = FALSE, verbose = FALSE, 
+    targets = NULL, contribs=NULL, quiet = FALSE, verbose = FALSE, 
     presence.only = FALSE, ...) 
 {
-    if (!is.null(targets)) {
-        inds <- match(targets, contribs)
-        inds <- inds[!is.na(inds)]
+#------------#
+IBD <- convertIBD(IBD)
+
+if(any(!(contribs%in%targets))) { 
+	extra<-setdiff(contribs, targets)
+	typed<-names(typed.gts)
+	keep<-intersect(extra,typed)
+	drop<-setdiff(extra,typed)
+if(length(keep)>0) 
+	{
+	cat('warning, in future put',keep,'in reference.profiles\n',
+	'here, we extend IBD and targets to include it/them\n')
+	targets<-c(targets,keep)
+	pattkeep<-matrix(max(IBD$patt)+(1:(2*length(keep))),nrow(IBD$patt),2*length(keep),byrow=TRUE)
+	IBD$patt<-cbind(IBD$patt,pattkeep)
+	attr(IBD,'targets')<-targets
+	}
+if(length(drop)>0) cat('warning, in future omit',drop,':',
+	'here, just ignored\n')
+contribs<-setdiff(contribs,drop) 
+}
+
+    if (!(is.null(targets)&&is.null(contribs))) {
         jcontr <- match(contribs, targets)
+	  inds<-which(!is.na(jcontr))
         jcontr <- jcontr[!is.na(jcontr)]
         jtyped <- match(names(typed.gts), targets)
     }
-    IBD <- convertIBD(IBD)
+    if (length(jtyped) != length(typed.gts)) 
+        stop("jtyped and typed.gts incompatible\n")
+    if (length(jcontr) != length(inds)) 
+        stop("jcontr and inds incompatible\n")
+    if (!all(jtyped %in% (1:ncol(IBD$patt)/2)) || !all(jcontr %in% 
+        (1:ncol(IBD$patt)/2))) 
+        stop("jtyped, jcontr and IBD incompatible;\n",jtyped,"\n",jcontr,"\n",ncol(IBD$patt)/2,"\n")
+#------------#
     sumlogLR <- 0
     logLR<-NULL
     for (t in 1:length(listdata)) {
@@ -241,6 +269,7 @@ function (listdata, pars, IBD, typed.gts = NULL, inds = 1, jtyped = ncol(IBD$pat
                 if (length(wt) > 0 && wt > 0) {
                   log10LR <- (protected(logL(mixDmr, presence.only)(pars)) - 
                     baseline)/log(10)
+cat(r,m,protected(logL(mixDmr, presence.only)(pars)),'\n')
                   LR <- LR + wt * 10^log10LR
                   wtsum <- wtsum + wt
                 }
@@ -883,23 +912,46 @@ function (mixture, sex, compile = TRUE)
 rpt.IBD <-
 function (mixture, IBD='parent-child', typed.gts = NULL, inds = 1, jtyped = ncol(IBD$patt)/2 - 
     length(typed.gts) + seq_along(typed.gts), jcontr = seq_along(inds), 
-    targets = attr(IBD,'targets'), contribs = NULL, quiet = FALSE, all.freq = NULL, 
+    targets = NULL, contribs = NULL, quiet = FALSE, all.freq = NULL, 
     compile = TRUE) 
 {
+#------------#
+IBD <- convertIBD(IBD)
+
+if(any(!(contribs%in%targets))) { 
+	extra<-setdiff(contribs, targets)
+	typed<-names(typed.gts)
+	keep<-intersect(extra,typed)
+	drop<-setdiff(extra,typed)
+if(length(keep)>0) 
+	{
+	cat('warning, in future put',keep,'in reference.profiles\n',
+	'here, we extend IBD and targets to include it/them\n')
+	targets<-c(targets,keep)
+	pattkeep<-matrix(max(IBD$patt)+(1:(2*length(keep))),nrow(IBD$patt),2*length(keep),byrow=TRUE)
+	IBD$patt<-cbind(IBD$patt,pattkeep)
+	attr(IBD,'targets')<-targets
+	}
+if(length(drop)>0) cat('warning, in future omit',drop,':',
+	'here, just ignored\n')
+contribs<-setdiff(contribs,drop) 
+}
+
     if (!(is.null(targets)&&is.null(contribs))) {
         jcontr <- match(contribs, targets)
 	  inds<-which(!is.na(jcontr))
         jcontr <- jcontr[!is.na(jcontr)]
         jtyped <- match(names(typed.gts), targets)
     }
-    IBD <- convertIBD(IBD)
     if (length(jtyped) != length(typed.gts)) 
-        stop("jtyped and typed.gts incompatible")
+        stop("jtyped and typed.gts incompatible\n")
     if (length(jcontr) != length(inds)) 
-        stop("jcontr and inds incompatible")
+        stop("jcontr and inds incompatible\n")
     if (!all(jtyped %in% (1:ncol(IBD$patt)/2)) || !all(jcontr %in% 
         (1:ncol(IBD$patt)/2))) 
-        stop("jtyped, jcontr and IBD incompatible")
+        stop("jtyped, jcontr and IBD incompatible;\n",jtyped,"\n",jcontr,"\n",ncol(IBD$patt)/2,"\n")
+#------------#
+
     ntyped <- length(jtyped)
     ap <- rep(0, max(IBD$patt))
     ptypedgts <- NULL
@@ -1342,7 +1394,7 @@ function (mixture, Rgt, IBD = c(0.25, 0.5, 0.25), ind = 1,
 rpt.typed.relatives <-
 function (mixture, IBD="parent-child", typed.gts = NULL, inds = 1, jtyped = ncol(IBD$patt)/2 - 
     length(typed.gts) + seq_along(typed.gts), jcontr = seq_along(inds), 
-    targets = attr(IBD,'targets'), contribs = NULL, quiet = FALSE, all.freq = NULL, 
+    targets = NULL, contribs = NULL, quiet = FALSE, all.freq = NULL, 
     compile = TRUE) 
 {
     if (!is.null(targets)) {
@@ -1653,11 +1705,11 @@ function (mixture, M, compile = TRUE)
 size <-
 function (mixture) 
 {
-    res <- sum(unlist(lapply(mixture$dom, function(d) sizedomain(d))))
+    if((.Platform$OS.type=="windows")&&("package:RHugin"%in%search())) 
+		res<-0 else res <- sum(unlist(lapply(mixture$dom, function(d) sizedomain(d)))) 
     class(res) <- "tablesize"
     res
 }
-
 sizedomain<-function(domain)
 {
 if(is(domain,'gRaven')) 

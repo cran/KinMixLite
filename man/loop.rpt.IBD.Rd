@@ -6,7 +6,7 @@ Analysis of DNA mixtures with familial relationships, by looping over traces, ma
 \usage{
 loop.rpt.IBD(listdata, pars, IBD, typed.gts = NULL, inds = 1, 
     jtyped = ncol(IBD$patt)/2 - length(typed.gts) + seq_along(typed.gts), 
-    jcontr = seq_along(inds), targets = NULL, contribs, 
+    jcontr = seq_along(inds), targets = NULL, contribs = NULL, 
     quiet=FALSE, verbose=FALSE, presence.only=FALSE, ...) 
 }
 \arguments{
